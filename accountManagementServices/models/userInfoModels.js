@@ -22,13 +22,21 @@ const userInfoSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    gender: {
+        type: String,
+        required: false
+    },
+    dob: {
+        type: Date,
+        required: false
+    },
     occupation: {
         type: String,
         required: false
     },
     contactNumber: {
         type: Number,
-        required: true,
+        required: false,
         unique: true,
         length: 10,
         trim: true
