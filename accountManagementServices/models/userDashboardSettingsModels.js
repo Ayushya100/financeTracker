@@ -46,145 +46,90 @@ const userDashboardSettingsSchema = new mongoose.Schema({
         required: false,
         default: true
     },
-    perDayExpBarChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    customExpBarChart: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayExpPieChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    customExpPieChart: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayCreditBarChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    customExpLineChart: {
+        type: Object,
+        default: {lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayCreditPieChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    customInvestBarChart: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayInvestBarChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    customInvestPieChart: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayInvestPieChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    customInvestLineChart: {
+        type: Object,
+        default: {lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayIncomeBarChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    customIncomeBarChart: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayIncomePieChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    customIncomePieChart: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDaySpendReport: {
-        type: Boolean,
-        required: false,
-        default: true
+    customIncomeLineChart: {
+        type: Object,
+        default: {lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayIncomeReport: {
-        type: Boolean,
-        required: false,
-        default: true
+    customCreditBarChart: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayInvestReport: {
-        type: Boolean,
-        required: false,
-        default: true
+    customCreditPieChart: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    perDayTotalReport: {
-        type: Boolean,
-        required: false,
-        default: true
+    customCreditLineChart: {
+        type: Object,
+        default: {lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    monthExpBarChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    spendingsReport: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    monthExpPieChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    incomeReport: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    monthExpLineChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    investmentReport: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    monthCreditBarChart: {
-        type: Boolean,
-        required: false,
-        default: true
+    creditCardReport: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     },
-    monthCreditPieChart: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthCreditLineChart: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthInvestBarChart: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthInvestPieChart: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthInvestLineChart: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthIncomeBarChart: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthIncomePieChart: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthIncomeLineChart: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthSpendReport: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthIncomeReport: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthInvestReport: {
-        type: Boolean,
-        required: false,
-        default: true
-    },
-    monthTotalReport: {
-        type: Boolean,
-        required: false,
-        default: true
+    generalReport: {
+        type: Object,
+        default: {daily: true, lastMonth: true, last3Month: true, last6Month: true, lastYear: true, custom: true},
+        required: false
     }
 });
 
