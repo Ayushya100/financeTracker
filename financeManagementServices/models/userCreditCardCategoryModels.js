@@ -11,6 +11,10 @@ const creditCardCategorySchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    creditCategoryNote: {
+        type: String,
+        required: false
+    },
     createdOn: {
         type: Date,
         default: Date.now()

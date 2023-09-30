@@ -11,6 +11,10 @@ const userInvestmentCategorySchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    investCategoryNote: {
+        type: String,
+        required: false
+    },
     createdOn: {
         type: Date,
         default: Date.now()

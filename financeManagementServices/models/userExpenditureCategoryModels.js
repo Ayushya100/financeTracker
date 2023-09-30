@@ -11,6 +11,10 @@ const userExpenditureCategorySchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    expCategoryNote: {
+        type: String,
+        required: false
+    },
     createdOn: {
         type: Date,
         default: Date.now()
