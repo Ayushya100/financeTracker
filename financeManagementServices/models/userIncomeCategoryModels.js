@@ -11,6 +11,10 @@ const userIncomeCategorySchema = new mongoose.Schema({
         trim: true,
         required: true
     },
+    incomeCategoryNote: {
+        type: String,
+        required: false
+    },
     createdOn: {
         type: Date,
         default: Date.now()
