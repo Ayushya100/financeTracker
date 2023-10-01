@@ -13,6 +13,12 @@ require('../connections/dbConnection');
 
 // Port No and API
 const port = process.env.port || 3200;
+const userApi = '/api/users';
+
+// Routes
+const usersRoute = require('../routes');
+
+app.use(`${userApi}/createUser`, usersRoute.createUser);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);

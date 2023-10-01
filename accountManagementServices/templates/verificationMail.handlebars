@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify your Account with FinanceTracker</title>
+
+    <style>
+        .message {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .info {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .from-reg {
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 2px;
+        }
+        .from {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>    
+    <div class="message">An account request has been received for this email address. To activate your account on FinanceTracker, please verify your email.</div>
+    <div class="info">To continue, kindly click the link below.</div>
+    <a href="{{ verificationCode }}">Verify</a>
+    
+    <div class="from-reg">Regards</div>
+    <div class="from">Team FinanceTracker</div>
+</body>
+</html>

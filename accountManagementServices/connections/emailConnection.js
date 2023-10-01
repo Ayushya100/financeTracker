@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 const handlebarsOptions = {
     viewEngine: {
         extName: '.handlebars',
-        partialsDir: path.resolve('./templatetes'),
+        partialsDir: path.resolve('./templates'),
         defaultLayout: false
     },
     viewPath: path.resolve('./templates'),
