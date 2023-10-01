@@ -67,6 +67,11 @@ const userInfoSchema = new mongoose.Schema({
         type: Date,
         required: false
     },
+    loginCount: {
+        type: Number,
+        default: 0,
+        required: false
+    },
     isDeleted: {
         type: Boolean,
         required: false,
