@@ -1,4 +1,5 @@
 module.exports = {
     validatePayload: require('./validatePayload'),
-    createUser: require('./createUser')
+    createUser: require('./createUser'),
+    verifyNewUser: require('./verifyUserAccount')
 };

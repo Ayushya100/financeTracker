@@ -19,6 +19,7 @@ const userApi = '/api/users';
 const usersRoute = require('../routes');
 
 app.use(`${userApi}/createUser`, usersRoute.createUser);
+app.use(`${userApi}/verify`, usersRoute.verifyUser);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);

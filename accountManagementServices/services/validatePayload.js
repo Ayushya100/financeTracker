@@ -1,3 +1,4 @@
+// Adding Models
 const User = require('../models/userInfoModels');
 
 const validatePayload = (payload, type) => {
@@ -5,9 +6,12 @@ const validatePayload = (payload, type) => {
 
     if (requestType === 'new-user') {
         return newUserValidation(payload);
+    } else if (requestType === 'new-user-verification') {
+        return newUserIdVerification(payload);
     }
 }
 
+// New user payload validation
 const newUserValidation = async(payload) => {
     const missingMsg = 'Required parameters are missing:';
     const conflictMsg = 'already exist';
@@ -34,6 +38,16 @@ const newUserValidation = async(payload) => {
         }
         return true;
     }
+}
+
+// New user verification payload
+const newUserIdVerification = async(id) => {
+    const userFound = await User.findById(id);
+
+    if(!userFound) {
+        return {code: 404, message: `Id (${id}) invalid, user not found`};
+    }
+    return true;
 }
 
 module.exports = validatePayload;
