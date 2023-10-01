@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Verified Successfully</title>
+
+    <style>
+        .cong-message {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .info-heading {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        .info {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        .from-reg {
+            font-size: 14px;
+            margin-top: 20px;
+            margin-bottom: 2px;
+        }
+        .from {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="welcome">Welcome to Your Finance Companion</h1>
+    
+    <div class="cong-message">Congratulations! You're Officially a Member of financeTracker.</div>
+    <div class="info-heading">Following are your registered details:</div>
+    <table>
+        <tr>
+            <td>First Name: </td>
+            <td>{{ firstName }}</td>
+        </tr>
+        <tr>
+            <td>Last Name: </td>
+            <td>{{ lastName }}</td>
+        </tr>
+        <tr>
+            <td>Username: </td>
+            <td>{{ userName }}</td>
+        </tr>
+        <tr>
+            <td>Phone Number: </td>
+            <td>{{ phoneNo }}</td>
+        </tr>
+        <tr>
+            <td>Email Id: </td>
+            <td>{{ emailId }}</td>
+        </tr>
+    </table>
+    <div class="info" style="margin-top: 15px;">If you find any discrepancies in your details, please visit our portal to make updates.</div>
+    
+    <div class="from-reg">Regards</div>
+    <div class="from">Team financeTracker</div>
+</body>
+</html>
