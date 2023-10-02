@@ -11,8 +11,13 @@ router.post('/', async(req, res) => {
         
         if (payloadValidationResult === true) {
             const tokenValidationResult = await services.validateToken(payload);
-            if (tokenValidationResult.message === 'valid') {
-                res.status(200).send(tokenValidationResult);
+            if ((tokenValidationResult.message === 'valid') && (payload.id === tokenValidationResult.result.id)) {
+                const result = await services.verifyUserById(payload.id);
+                if (result === true) {
+                    res.status(200).send(tokenValidationResult);
+                } else {
+                    res.status(401).send('Unauthorized user');
+                }
             } else {
                 res.status(401).send(tokenValidationResult);
             }
