@@ -37,7 +37,6 @@ const userInfoSchema = new mongoose.Schema({
     contactNumber: {
         type: Number,
         required: false,
-        unique: true,
         length: 10,
         trim: true
     },
@@ -83,10 +82,6 @@ const userInfoSchema = new mongoose.Schema({
         default: false
     },
     verificationCode: {
-        type: String,
-        required: false
-    },
-    token: {
         type: String,
         required: false
     }
