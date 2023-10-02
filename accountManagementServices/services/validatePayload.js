@@ -8,6 +8,8 @@ const validatePayload = (payload, type) => {
         return newUserValidation(payload);
     } else if (requestType === 'new-user-verification') {
         return newUserIdVerification(payload);
+    } else if (requestType === 'login-user') {
+        return userLoginVerification(payload);
     }
 }
 
@@ -46,6 +48,20 @@ const newUserIdVerification = async(id) => {
 
     if(!userFound) {
         return {code: 404, message: `Id (${id}) invalid, user not found`};
+    }
+    return true;
+}
+
+// User login verification payload
+const userLoginVerification = async(payload) => {
+    const message = {code: 400, message: ''};
+    const missingMsg = 'Required parameters are missing: ';
+    if (!payload.userName) {
+        message.message = `${missingMsg} UserName`;
+        return message;
+    } else if (!payload.password) {
+        message.message = `${missingMsg} Password`;
+        return message;
     }
     return true;
 }
