@@ -4,7 +4,7 @@ const router = express.Router();
 const services = require('../services');
 
 // API
-router.post('/', async(req, res) => {
+router.get('/', async(req, res) => {
     try {
         let payload = req.body;
         const payloadValidationResult = await services.validatePayload(payload, 'validate-token');
