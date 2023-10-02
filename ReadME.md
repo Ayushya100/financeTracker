@@ -22,6 +22,8 @@ npm i nodemon
 npm i randombytes
 npm i uuid
 npm i validator
+npm i axios
+npm i dotenv
 
 
 

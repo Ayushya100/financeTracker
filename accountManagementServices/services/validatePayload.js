@@ -10,6 +10,8 @@ const validatePayload = (payload, type) => {
         return newUserIdVerification(payload);
     } else if (requestType === 'login-user') {
         return userLoginVerification(payload);
+    } else if (requestType === 'validate-token') {
+        return tokenVerification(payload);
     }
 }
 
@@ -62,6 +64,20 @@ const userLoginVerification = async(payload) => {
     } else if (!payload.password) {
         message.message = `${missingMsg} Password`;
         return message;
+    }
+    return true;
+}
+
+// Token verification payload
+const tokenVerification = async(payload) => {
+    const missingMsg = 'Required parameters are missing:';
+
+    if (!payload.id) {
+        return {code: 400, message: `${missingMsg} id`};
+    } else if (!payload.userName) {
+        return {code: 400, message: `${missingMsg} userName`};
+    } else if (!payload.token) {
+        return {code: 401, message: `Unauthorized user`};
     }
     return true;
 }
