@@ -74,8 +74,6 @@ const tokenVerification = async(payload) => {
 
     if (!payload.id) {
         return {code: 400, message: `${missingMsg} id`};
-    } else if (!payload.userName) {
-        return {code: 400, message: `${missingMsg} userName`};
     } else if (!payload.token) {
         return {code: 401, message: `Unauthorized user`};
     }
