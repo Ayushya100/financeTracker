@@ -19,7 +19,8 @@ const createUser = async(payload) => {
         payload.verificationCode = emailServices.sendVerificationMail(newUser._id, newUser.emailId);
         await User.findByIdAndUpdate(newUser._id, payload);
 
-        const updatedUser = await User.findById(newUser._id);
+        const infoToDisplay = '_id firstName lastName userName emailId createdOn isVerified verificationCode';
+        const updatedUser = await User.findById(newUser._id, infoToDisplay);
         return {code: 201, message: updatedUser};
     }).catch(err => {
         return {code: 400, message: err};
