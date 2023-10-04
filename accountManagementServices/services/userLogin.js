@@ -18,9 +18,15 @@ const userLogin = async(payload) => {
         if (isAuthenticated) {
             if (user.isVerified) {
                 const token = jwt.sign({id: user._id, userName: user.userName}, secretKey, {expiresIn: '1h'});
+                await Users.findByIdAndUpdate(user._id, {
+                    lastLogin: Date.now(),
+                    loginCount: user.loginCount + 1
+                });
+
+                const updatedUser = await Users.findById(user._id);
                 return {code: 200, message: {
-                    id: user._id,
-                    userName: user.userName,
+                    id: updatedUser._id,
+                    userName: updatedUser.userName,
                     token: token
                 }};
             } else {
