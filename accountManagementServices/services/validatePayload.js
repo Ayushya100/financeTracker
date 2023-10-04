@@ -14,6 +14,8 @@ const validatePayload = (payload, type) => {
         return tokenVerification(payload);
     } else if (requestType === 'update-user') {
         return updateUserVerification(payload);
+    } else if (requestType === 'update-password') {
+        return updatePasswordVerification(payload);
     }
 }
 
@@ -97,6 +99,20 @@ const updateUserVerification = async(payload) => {
         return message;
     } else if (!payload.userName) {
         message.message = `${missingMsg} userName`;
+        return message;
+    }
+    return true;
+}
+
+// Update user password payload
+const updatePasswordVerification = async(payload) => {
+    const message = {code: 400, message: ''};
+    const missingMsg = 'Required parameters are missing: ';
+    if (!payload.oldPassword) {
+        message.message = `${missingMsg} oldPassword`;
+        return message;
+    } else if (!payload.newPassword) {
+        message.message = `${missingMsg} newPassword`;
         return message;
     }
     return true;

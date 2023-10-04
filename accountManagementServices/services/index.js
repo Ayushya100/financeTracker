@@ -6,5 +6,6 @@ module.exports = {
     validateToken: require('./validateToken'),
     verifyUserById: require('./verifyUserById'),
     getUserInfo: require('./getUserInfo'),
-    updateUserDetails: require('./updateUserDetails')
+    updateUserDetails: require('./updateUserDetails'),
+    updateUserPassword: require('./updateUserPassword')
 };
