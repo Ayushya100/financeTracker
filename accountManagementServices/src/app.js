@@ -25,6 +25,7 @@ app.use(`${userApi}/userLogin`, usersRoute.userLogin);
 app.use(`${userApi}/validateToken`, usersRoute.validateToken);
 app.use(`${userApi}/getUserInfo`, usersRoute.getUserInfo);
 app.use(`${userApi}/updateUserDetails`, usersRoute.updateUserDetails);
+app.use(`${userApi}/updateUserPassword`, usersRoute.updateUserPassword);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);
