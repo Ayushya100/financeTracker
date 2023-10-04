@@ -12,6 +12,8 @@ const validatePayload = (payload, type) => {
         return userLoginVerification(payload);
     } else if (requestType === 'validate-token') {
         return tokenVerification(payload);
+    } else if (requestType === 'update-user') {
+        return updateUserVerification(payload);
     }
 }
 
@@ -76,6 +78,26 @@ const tokenVerification = async(payload) => {
         return {code: 400, message: `${missingMsg} id`};
     } else if (!payload.token) {
         return {code: 401, message: `Unauthorized user`};
+    }
+    return true;
+}
+
+// Update user details payload
+const updateUserVerification = async(payload) => {
+    const message = {code: 400, message: ''};
+    const missingMsg = 'Required parameters are missing: ';
+    if (!payload.id) {
+        message.message = `${missingMsg} id`;
+        return message;
+    } else if (!payload.firstName) {
+        message.message = `${missingMsg} firstName`;
+        return message;
+    } else if (!payload.lastName) {
+        message.message = `${missingMsg} lastName`;
+        return message;
+    } else if (!payload.userName) {
+        message.message = `${missingMsg} userName`;
+        return message;
     }
     return true;
 }
