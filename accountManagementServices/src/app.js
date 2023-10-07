@@ -29,6 +29,7 @@ app.use(`${userApi}/updateUserPassword`, usersRoute.updateUserPassword);
 app.use(`${userApi}/deactivateUser`, usersRoute.deactivateUser);
 
 app.listen(port, () => {
+    require('../scheduledServices');
     console.log(`Server is running on ${port}`);
 });
 
