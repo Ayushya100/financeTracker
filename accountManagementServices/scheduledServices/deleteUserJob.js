@@ -7,7 +7,7 @@ const Logs = require('../models/userLogs');
 const deleteUserJob = async() => {
     let thirtyDaysAgo = new Date();
     console.log(`Scheduler executed executed at ${thirtyDaysAgo}`);
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate());
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     
     try {
         const queryParameters = {
