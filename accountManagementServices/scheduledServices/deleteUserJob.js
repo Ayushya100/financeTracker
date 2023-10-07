@@ -6,7 +6,7 @@ const Logs = require('../models/userLogs');
 // Job
 const deleteUserJob = async() => {
     let thirtyDaysAgo = new Date();
-    console.log(`Scheduler executed executed at ${thirtyDaysAgo}`);
+    console.log(`Delete User Scheduler executed at ${thirtyDaysAgo}`);
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     
     try {
@@ -36,9 +36,9 @@ const deleteUserJob = async() => {
     } catch(err) {
         const payload = {
             "logType": "delete-scheduled-users",
-                "logDetails": `Some error occurred: ${err}`,
-                "logDate": new Date(),
-                "createdBy": "scheduler-service"
+            "logDetails": `Some error occurred: ${err}`,
+            "logDate": new Date(),
+            "createdBy": "scheduler-service"
         }
 
         const log = new Logs(payload);
