@@ -8,7 +8,7 @@ const validatePayload = (payload, type) => {
         return newUserValidation(payload);
     } else if (requestType === 'new-user-verification') {
         return newUserIdVerification(payload);
-    } else if (requestType === 'login-user') {
+    } else if ((requestType === 'login-user') || (requestType === 'deactivate-user')) {
         return userLoginVerification(payload);
     } else if (requestType === 'validate-token') {
         return tokenVerification(payload);
@@ -58,7 +58,7 @@ const newUserIdVerification = async(id) => {
     return true;
 }
 
-// User login verification payload
+// User login verification/deactivate payload
 const userLoginVerification = async(payload) => {
     const message = {code: 400, message: ''};
     const missingMsg = 'Required parameters are missing: ';
