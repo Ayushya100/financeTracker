@@ -12,9 +12,16 @@ router.get('/:id/:date/:code', async(req, res) => {
         const verificationCode = req.params.code;
 
         const payloadValidationResult = await services.validatePayload(id, 'new-user-verification');
-        if (payloadValidationResult === true) {
-            const userVerificationResult = await services.verifyNewUser(id, createdDate, verificationCode);
-            res.status(userVerificationResult.code).sendFile(path.join(__dirname, `../templates/${userVerificationResult.fileToDisplay}.html`));
+
+        if (payloadValidationResult.code === 200) {
+            const checkUserExist = await services.checkUserExist(id, 'new-user-verification');
+
+            if (checkUserExist.code === 200) {
+                const userVerificationResult = await services.verifyNewUser(id, createdDate, verificationCode);
+                res.status(userVerificationResult.code).sendFile(path.join(__dirname, `../templates/${userVerificationResult.fileToDisplay}.html`));
+            } else {
+                res.status(checkUserExist.code).send(checkUserExist.message);
+            }
         } else {
             res.status(payloadValidationResult.code).send(payloadValidationResult.message);
         }
