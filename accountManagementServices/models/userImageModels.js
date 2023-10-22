@@ -6,17 +6,41 @@ const userImageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fileName: {
+    userName: {
         type: String,
         required: true
     },
-    data: {
-        type: Buffer,
-        required: true
+    profileImage: {
+        data: {
+            type: Buffer,
+            required: true
+        },
+        contentType: {
+            type: String,
+            required: true
+        }
     },
-    contentType: {
+    createdOn: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    },
+    createdBy: {
         type: String,
-        required: true
+        required: false,
+        trim: true,
+        default: "SYSTEM"
+    },
+    modifiedOn: {
+        type: Date,
+        required: true,
+        default: Date.now()
+    },
+    modifiedBy: {
+        type: String,
+        required: true,
+        trim: true,
+        default: "SYSTEM"
     }
 });
 
