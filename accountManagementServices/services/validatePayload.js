@@ -39,12 +39,10 @@ const newUserValidation = async(payload) => {
 
 // New user verification payload
 const newUserIdVerification = async(id) => {
-    const userFound = await User.findById(id);
-
-    if(!userFound) {
-        return {code: 404, message: `Id (${id}) invalid, user not found`};
+    if (!id) {
+        return {code: 400, message: 'Required parameter missing: id'};
     }
-    return true;
+    return {code: 200, message: 'Payload verified'};
 }
 
 // User login verification/deactivate payload
