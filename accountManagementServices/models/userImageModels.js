@@ -13,11 +13,11 @@ const userImageSchema = new mongoose.Schema({
     profileImage: {
         data: {
             type: Buffer,
-            required: true
+            required: false
         },
         contentType: {
             type: String,
-            required: true
+            required: false
         }
     },
     createdOn: {
