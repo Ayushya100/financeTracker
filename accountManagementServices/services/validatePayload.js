@@ -22,7 +22,6 @@ const validatePayload = (payload, type) => {
 // New user payload validation
 const newUserValidation = async(payload) => {
     const missingMsg = 'Required parameters are missing:';
-    const conflictMsg = 'already exist';
 
     if (!payload.firstName) {
         return {code: 400, message: `${missingMsg} FirstName`};
@@ -35,17 +34,7 @@ const newUserValidation = async(payload) => {
     } else if (!payload.password) {
         return {code: 400, message: `${missingMsg} Password`};
     }
-    else {
-        let emailId = payload.emailId;
-        let userName = payload.userName;
-
-        if (await User.findOne({ emailId })) {
-            return {code: 409, message: `EmailId ${conflictMsg}`};
-        } else if (await User.findOne({ userName })) {
-            return {code: 409, message: `UserName ${conflictMsg}`};
-        }
-        return true;
-    }
+    return {code: 200, message: 'Payload verified'};
 }
 
 // New user verification payload

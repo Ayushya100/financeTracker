@@ -6,12 +6,18 @@ const services = require('../services/index');
 // API
 router.post('/', async(req, res) => {
     try {
-        let payload = req.body;
-        let payloadValidationResult = await services.validatePayload(payload, 'new-user');
+        const payload = req.body;
+        const payloadValidationResult = await services.validatePayload(payload, 'new-user');
 
-        if (payloadValidationResult === true) {
-            const newUser = await services.createUser(payload);  
-            res.status(newUser.code).send(newUser.message);
+        if (payloadValidationResult.code === 200) {
+            const checkUserExist = await services.checkUserExist(payload, 'new-user');
+
+            if (checkUserExist.code === 200) {
+                const newUser = await services.createUser(payload);  
+                res.status(newUser.code).send(newUser.message);
+            } else {
+                res.status(checkUserExist.code).send(checkUserExist.message);
+            }
         } else {
             res.status(payloadValidationResult.code).send('Bad Request - ' + payloadValidationResult.message);
         }
