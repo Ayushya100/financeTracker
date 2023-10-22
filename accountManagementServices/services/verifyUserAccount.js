@@ -12,6 +12,7 @@ const verifyUser = async(id, createdDate, verificationCode) => {
     if ((verificationTime <= 1) && (userInfo.verificationCode === verificationCode)) {
         userInfo.verificationCode = '';
         userInfo.isVerified = true;
+        userInfo.modifiedOn = Date.now();
         await User.findByIdAndUpdate(id, userInfo);
 
         emailServices.accountVerifiedMail(userInfo);
