@@ -10,6 +10,10 @@ const userLogSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Mixed,
         required: true
     },
+    message: {
+        type: String,
+        required: true
+    },
     logDate: {
         type: Date,
         required: true,
@@ -26,7 +30,8 @@ const userLogSchema = new mongoose.Schema({
     },
     createdBy: {
         type: String,
-        required: true
+        required: true,
+        default: "SYSTEM"
     }
 });
 
