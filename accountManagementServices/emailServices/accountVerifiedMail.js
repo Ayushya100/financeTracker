@@ -4,13 +4,14 @@ const accountVerifiedSuccessfullyMail = (userInfo) => {
     const mailOptions = {
         from: 'shadow.works',
         to: userInfo.emailId,
-        subject: 'Ready to Roll: Your Account Is Verified.',
+        subject: 'Account Verified - Welcome to dailyFinance',
         template: 'verificationSuccessfulMail',
         context: {
+            fullName: userInfo.firstName + " " + userInfo.lastName,
             firstName: userInfo.firstName,
             lastName: userInfo.lastName,
             userName: userInfo.userName,
-            phoneNo: userInfo.contactNumber,
+            contactNumber: userInfo.contactNumber,
             emailId: userInfo.emailId
         }
     };
