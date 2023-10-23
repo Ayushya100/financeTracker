@@ -9,7 +9,7 @@ router.post('/', async(req, res) => {
         let payload = req.body;
         let payloadValidationResult = await services.validatePayload(payload, 'login-user');
         
-        if (payloadValidationResult === true) {
+        if (payloadValidationResult.code === 200) {
             const loginRes = await services.userLogin(payload);
             res.status(loginRes.code).send(loginRes.message);
         } else {

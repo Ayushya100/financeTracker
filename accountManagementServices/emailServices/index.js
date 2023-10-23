@@ -1,4 +1,5 @@
 module.exports = {
     sendVerificationMail: require('./sendVerificationMail'),
-    accountVerifiedMail: require('./accountVerifiedMail')
+    accountVerifiedMail: require('./accountVerifiedMail'),
+    accountReactivateMail: require('./accountReactivateMail')
 };

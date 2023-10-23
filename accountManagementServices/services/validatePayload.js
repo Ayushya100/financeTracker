@@ -56,7 +56,7 @@ const userLoginVerification = async(payload) => {
         message.message = `${missingMsg} Password`;
         return message;
     }
-    return true;
+    return {code: 200, message: 'Payload verified'};
 }
 
 // Token verification payload
