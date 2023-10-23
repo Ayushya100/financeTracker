@@ -68,7 +68,7 @@ const tokenVerification = async(payload) => {
     } else if (!payload.token) {
         return {code: 401, message: `Unauthorized user`};
     }
-    return true;
+    return {code: 200, message: 'Payload verified'};
 }
 
 // Update user details payload
