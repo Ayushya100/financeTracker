@@ -30,7 +30,8 @@ const createUser = async(payload) => {
         await userDashboard.save();
 
         // Create verification code & update
-        payload.verificationCode = emailServices.sendVerificationMail(newUser._id, newUser.emailId);
+        const newUserName = newUser.firstName + " " + newUser.lastName;
+        payload.verificationCode = emailServices.sendVerificationMail(newUser._id, newUser.emailId, newUserName);
         await User.findByIdAndUpdate(newUser._id, payload);
 
         const infoToDisplay = '_id firstName lastName userName emailId createdOn isVerified verificationCode';
