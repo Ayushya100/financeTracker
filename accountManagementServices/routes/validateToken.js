@@ -9,8 +9,9 @@ router.post('/', async(req, res) => {
         let payload = req.body;
         const payloadValidationResult = await services.validatePayload(payload, 'validate-token');
         
-        if (payloadValidationResult === true) {
+        if (payloadValidationResult.code === 200) {
             const tokenValidationResult = await services.validateToken(payload);
+            
             if ((tokenValidationResult.message === 'valid') && (payload.id === tokenValidationResult.result.id)) {
                 const result = await services.verifyUserById(payload.id);
                 if (result === true) {
