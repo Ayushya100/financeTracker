@@ -4,33 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verify your Account with FinanceTracker</title>
+    <title>Welcome to dailyFinance - Verify Your Email and Activate Your Account</title>
 
     <style>
+        .username {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
         .message {
             font-size: 16px;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
+        }
+        .message-heading {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: -10px;
         }
         .info {
             font-size: 14px;
             margin-bottom: 5px;
         }
         .from-reg {
-            font-size: 14px;
+            font-size: 16px;
             margin-top: 20px;
             margin-bottom: 2px;
         }
         .from {
             font-size: 16px;
         }
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>    
-    <div class="message">An account request has been received for this email address. To activate your account on financeTracker, please verify your email.</div>
-    <div class="info">To continue, kindly click the link below.</div>
-    <a href="{{ verificationCode }}">Verify</a>
+    <div class="username">Dear {{ fullName }},</div>
+    <div class="message">We are thrilled to welcome you to dailyFinance! Thank you for choosing us as your trusted platform. Your journey toward financial empowerment and success begins here.</div>
+    <div class="message">To ensure the security and integrity of your account, we kindly ask you to verify your email address and activate your account. Please follow the simple steps below:</div>
     
-    <div class="from-reg">Regards</div>
-    <div class="from">Team financeTracker</div>
+    <div class="message-heading">Step 1: Verify Your Email</div>
+    <ul>
+        <li class="info">
+            Click on the following verification link to confirm your email address: <a href="{{ verificationCode }}">Verification Link</a>
+        </li>
+    </ul>
+
+    <div class="message-heading">Step 2: Activate Your Account</div>
+    <ul>
+        <li class="info">
+            After verifying your email, you can log in to your account and start exploring all the powerful features that dailyFinance offers.
+        </li>
+    </ul>
+
+    <div class="message">With dailyFinance, you can:</div>
+    <ul>
+        <li class="info">
+            Track your daily expenses and income.
+        </li>
+        <li class="info">
+            Interactive Reports and Charts.
+        </li>
+        <li class="info">
+            User-Friendly Interface
+        </li>
+        <li class="info">
+            Data Export and Backup
+        </li>
+        <li class="info">
+            And so much more!
+        </li>
+    </ul>
+
+    <div class="message">If you didn't register for an account with us, please ignore this email.</div>
+    <div class="message">If you encounter any issues during the verification process, feel free to contact us at shadow.works.1998@gmail.com.</div>
+    <div class="message">We're excited to have you join our community of financially savvy users. Together, we can help you achieve your financial goals and make smart money decisions.</div>
+    <div class="message">Thank you for choosing dailyFinance, and welcome aboard!</div>
+
+    <div class="from-reg">Best regards,</div>
+    <div class="from">Team dailyFinance</div>
 </body>
 </html>
