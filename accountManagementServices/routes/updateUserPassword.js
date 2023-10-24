@@ -21,7 +21,7 @@ router.put('/:id', async(req, res) => {
         if (validateTokenResult.code === 200) {
             const validatePayloadResult = await services.validatePayload(payload, 'update-password');
 
-            if (validatePayloadResult === true) {
+            if (validatePayloadResult.code === 200) {
                 const userUpdateResult = await services.updateUserPassword(id, payload);
 
                 if(userUpdateResult.code === 200) {
