@@ -3,6 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 
 const services = require('../services');
+const emailServices = require('../emailServices');
 
 // API
 router.put('/:id', async(req, res) => {
@@ -22,11 +23,13 @@ router.put('/:id', async(req, res) => {
             payload.id = id;
             const validatePayloadResult = await services.validatePayload(payload, 'update-user');
 
-            if (validatePayloadResult === true) {
+            if (validatePayloadResult.code === 200) {
                 const userUpdateResult = await services.updateUserDetails(payload);
 
-                if (userUpdateResult.code === 200) {
+                if (userUpdateResult.code === 201) {
                     const updatedUser = await services.getUserInfo(id);
+                    emailServices.userUpdatedMail(updatedUser.message);
+                    
                     res.status(updatedUser.code).send(updatedUser.message);
                 } else {
                     res.status(userUpdateResult.code).send(userUpdateResult.message);

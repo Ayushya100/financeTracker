@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details Successfully Updated</title>
+
+    <style>
+        .username {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .message {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .message-heading {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: -10px;
+        }
+        .info {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .info-span {
+            font-weight: normal;
+        }
+        .from-reg {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 2px;
+        }
+        .from {
+            font-size: 16px;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>    
+    <div class="username">Dear {{ fullName }},</div>
+    <div class="message">We are writing to confirm that your account details have been successfully updated.</div>
+    <div class="message">Thank you for keeping your information current. Here are your updated basic details:</div>
+    
+    <div class="info">First Name: <span class="info-span">{{ firstName }}</span></div>
+    <div class="info">Last Name: <span class="info-span">{{ lastName }}</span></div>
+    <div class="info">UserName: <span class="info-span">{{ userName }}</span></div>
+    <div class="info">Email Id: <span class="info-span">{{ emailId }}</span></div>
+    <div class="info">Contact Number: <span class="info-span">{{ contactNumber }}</span></div>
+    <div class="info">Date of Birth (DOB): <span class="info-span">{{ dob }}</span></div>
+    <div class="info">Bio: <span class="info-span">{{ bio }}</span></div>
+    <div class="info">Occupation: <span class="info-span">{{ occupation }}</span></div>
+    <div class="info">Account Creation Date: <span class="info-span">{{ createdOn }}</span></div>
+    <div class="info">Last Login time: <span class="info-span">{{ lastLogin }}</span></div>
+
+    <div class="message">With your account information now up to date, you can continue to enjoy all the features and benefits of our platform, while ensuring that you receive important notifications and personalized services tailored to your needs.</div>
+    <div class="message">If you have any further updates to make or any questions, please feel free to reach out at shadow.works.1998@gmail.com. We're here to assist you.</div>
+    <div class="message">Thank you for choosing dailyFinance as your trusted financial partner.</div>
+
+    <div class="from-reg">Best regards,</div>
+    <div class="from">Team dailyFinance</div>
+</body>
+</html>

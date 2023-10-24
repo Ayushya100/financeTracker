@@ -87,8 +87,14 @@ const updateUserVerification = async(payload) => {
     } else if (!payload.userName) {
         message.message = `${missingMsg} userName`;
         return message;
+    } else if (!payload.emailId) {
+        message.message = `${missingMsg} emailId`;
+        return message;
+    } else if (!payload.modifiedBy) {
+        message.message = `${missingMsg} modifiedBy`;
+        return message;
     }
-    return true;
+    return {code: 200, message: 'Payload verified'};
 }
 
 // Update user password payload

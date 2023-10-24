@@ -1,18 +1,23 @@
 const transporter = require('../connections/emailConnection');
 
-const accountVerifiedSuccessfullyMail = (userInfo) => {
+const userUpdatedSuccessfullyMail = (userInfo) => {
     const mailOptions = {
         from: 'shadow.works',
         to: userInfo.emailId,
-        subject: 'Account Verified - Welcome to dailyFinance',
-        template: 'verificationSuccessfulMail',
+        subject: 'Account Details Successfully Updated',
+        template: 'userUpdatedMail',
         context: {
             fullName: userInfo.firstName + " " + userInfo.lastName,
             firstName: userInfo.firstName,
             lastName: userInfo.lastName,
             userName: userInfo.userName,
+            emailId: userInfo.emailId,
             contactNumber: userInfo.contactNumber,
-            emailId: userInfo.emailId
+            dob: userInfo.dob.toDateString(),
+            bio: userInfo.bio,
+            occupation: userInfo.occupation,
+            createdOn: userInfo.createdOn.toDateString(),
+            lastLogin: userInfo.lastLogin.toDateString()
         }
     };
 
@@ -25,4 +30,4 @@ const accountVerifiedSuccessfullyMail = (userInfo) => {
     });
 };
 
-module.exports = accountVerifiedSuccessfullyMail;
+module.exports = userUpdatedSuccessfullyMail;
