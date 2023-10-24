@@ -8,7 +8,7 @@ const validatePayload = (payload, type) => {
         return newUserValidation(payload);
     } else if (requestType === 'new-user-verification') {
         return newUserIdVerification(payload);
-    } else if ((requestType === 'login-user') || (requestType === 'deactivate-user')) {
+    } else if (requestType === 'login-user') {
         return userLoginVerification(payload);
     } else if (requestType === 'validate-token') {
         return tokenVerification(payload);
@@ -16,6 +16,8 @@ const validatePayload = (payload, type) => {
         return updateUserVerification(payload);
     } else if (requestType === 'update-password') {
         return updatePasswordVerification(payload);
+    } else if (requestType === 'deactivate-user') {
+        return deactivateUserVerification(payload);
     }
 }
 
@@ -91,7 +93,7 @@ const updateUserVerification = async(payload) => {
         message.message = `${missingMsg} emailId`;
         return message;
     } else if (!payload.modifiedBy) {
-        message.message = `${missingMsg} modifiedBy`;
+        message.message = `${missingMsg} Modified By`;
         return message;
     }
     return {code: 200, message: 'Payload verified'};
@@ -106,6 +108,23 @@ const updatePasswordVerification = async(payload) => {
         return message;
     } else if (!payload.newPassword) {
         message.message = `${missingMsg} newPassword`;
+        return message;
+    }
+    return {code: 200, message: 'Payload verified'};
+}
+
+// Deactivate user payload
+const deactivateUserVerification = async(payload) => {
+    const message = {code: 400, message: ''};
+    const missingMsg = 'Required parameters are missing: ';
+    if (!payload.userName) {
+        message.message = `${missingMsg} UserName`;
+        return message;
+    } else if (!payload.password) {
+        message.message = `${missingMsg} Password`;
+        return message;
+    } else if (!payload.modifiedBy) {
+        message.message = `${missingMsg} Modified By`;
         return message;
     }
     return {code: 200, message: 'Payload verified'};

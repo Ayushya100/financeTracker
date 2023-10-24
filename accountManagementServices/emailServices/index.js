@@ -3,5 +3,6 @@ module.exports = {
     accountVerifiedMail: require('./accountVerifiedMail'),
     accountReactivateMail: require('./accountReactivateMail'),
     userUpdatedMail: require('./userUpdatedMail'),
-    passwordUpdatedMail: require('./passwordUpdatedMail')
+    passwordUpdatedMail: require('./passwordUpdatedMail'),
+    accountDeactivatedMail: require('./accountDeactivatedMail')
 };

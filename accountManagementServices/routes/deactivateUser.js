@@ -21,7 +21,7 @@ router.put('/:id', async(req, res) => {
         if (validateTokenResult.code === 200) {
             const validatePayloadResult = await services.validatePayload(payload, 'deactivate-user');
 
-            if (validatePayloadResult === true) {
+            if (validatePayloadResult.code === 200) {
                 const deactivateUserResult = await services.deactivateUser(id, payload);
                 res.status(deactivateUserResult.code).send(deactivateUserResult.message);
             } else {
