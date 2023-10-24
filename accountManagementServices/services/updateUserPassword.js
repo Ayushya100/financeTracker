@@ -20,7 +20,11 @@ const updateUserPassword = async(id, payload) => {
                 const saltRounds = 10;
     
                 const encryptedPassword = await bcrypt.hash(newPassword, saltRounds);
-                await Users.findByIdAndUpdate(id, {password: encryptedPassword});
+                await Users.findByIdAndUpdate(id, {
+                    password: encryptedPassword,
+                    modifiedOn: Date.now(),
+                    modifiedBy: payload.modifiedBy
+                });
 
                 const fullName = user.firstName + " " + user.lastName;
                 emailServices.passwordUpdatedMail(user.emailId, fullName);
