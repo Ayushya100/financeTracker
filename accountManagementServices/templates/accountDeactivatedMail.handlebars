@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deactivation Confirmation</title>
+
+    <style>
+        .username {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .message {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .message-heading {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .info {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .info-span {
+            font-weight: normal;
+        }
+        .from-reg {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 2px;
+        }
+        .from {
+            font-size: 16px;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>    
+    <div class="username">Dear {{ fullName }},</div>
+    <div class="message">We are writing to confirm that your account has been deactivated. We value your time with us and understand that account deactivation is a significant decision. We want to ensure you are aware of the following:</div>
+    
+    <div class="info">Account Deactivation Date: <span class="info-span">{{ dateOfDeactivation }}</span></div>
+    <div class="info">Account Deletion Deadline: <span class="info-span">{{ reactivationTimeline }}</span></div>
+    
+    <div class="message">Your account is now inactive and will remain in this state until {{ reactivationTimeline }}. If you change your mind or wish to reactivate your account, you can do so by simply logging in to your account within this timeframe.</div>
+    
+    <div class="message-heading">What Happens Next?</div>
+    <ul>
+        <li class="message">If you choose not to reactivate your account by {{ reactivationTimeline }}, it will be permanently deleted from our system, and all data associated with your account will be irretrievable.</li>
+        <li class="message">To reactivate your account, simply log in as you normally would. Your account will be restored with all your previous data, settings, and information.</li>
+    </ul>
+    
+    <div class="message-heading">We're Here for You</div>
+    <div class="message">If you have any questions, concerns, or need assistance, please don't hesitate to contact us at shadow.works.1998@gmail.com. We're here to provide support during this process.</div>
+    <div class="message">Thank you for being a part of our community, and we hope to have the opportunity to welcome you back in the future. If you decide to reactivate your account, we'll be here to assist you.</div>
+    
+    <div class="from-reg">Best regards,</div>
+    <div class="from">Team dailyFinance</div>
+</body>
+</html>
