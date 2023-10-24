@@ -108,7 +108,7 @@ const updatePasswordVerification = async(payload) => {
         message.message = `${missingMsg} newPassword`;
         return message;
     }
-    return true;
+    return {code: 200, message: 'Payload verified'};
 }
 
 module.exports = validatePayload;
