@@ -2,12 +2,13 @@ const transporter = require('../connections/emailConnection');
 
 const passwordUpdatedSuccessfullyMail = (emailId, fullName) => {
     const mailOptions = {
-        from: 'shadow.works',
+        from: 'dailyFinance',
         to: emailId,
         subject: 'Password Updated Successfully',
         template: 'passwordUpdatedMail',
         context: {
-            fullName: fullName
+            fullName: fullName,
+            custContactEmailId: process.env.CUST_CONTACT_EMAIL_ID
         }
     };
 

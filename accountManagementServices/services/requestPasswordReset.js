@@ -23,7 +23,7 @@ const requestPasswordReset = async(payload) => {
             emailServices.requestPasswordResetMail({
                 emailId: updatedUser.emailId,
                 fullName: updatedUser.firstName + " " + updatedUser.lastName,
-                verificationLink: 'http://localhost:3200/api/users' + "/reset-password/" + updatedUser.verificationCode
+                verificationLink: updatedUser.verificationCode
             });
             return {code: 201, message: updatedUser};
         }
