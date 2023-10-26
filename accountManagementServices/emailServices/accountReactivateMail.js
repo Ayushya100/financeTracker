@@ -2,12 +2,13 @@ const transporter = require('../connections/emailConnection');
 
 const accountReactivatedMail = (emailId, fullName) => {
     const mailOptions = {
-        from: 'shadow.works',
+        from: 'dailyFinance',
         to: emailId,
         subject: 'Welcome Back! Your Account is Reactivated.',
         template: 'accountReactivateMail',
         context: {
-            fullName: fullName
+            fullName: fullName,
+            custContactEmailId: process.env.CUST_CONTACT_EMAIL_ID
         }
     };
 

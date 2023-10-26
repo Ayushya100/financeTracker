@@ -2,7 +2,7 @@ const transporter = require('../connections/emailConnection');
 
 const accountVerifiedSuccessfullyMail = (userInfo) => {
     const mailOptions = {
-        from: 'shadow.works',
+        from: 'dailyFinance',
         to: userInfo.emailId,
         subject: 'Account Verified - Welcome to dailyFinance',
         template: 'verificationSuccessfulMail',
@@ -12,7 +12,8 @@ const accountVerifiedSuccessfullyMail = (userInfo) => {
             lastName: userInfo.lastName,
             userName: userInfo.userName,
             contactNumber: userInfo.contactNumber,
-            emailId: userInfo.emailId
+            emailId: userInfo.emailId,
+            custContactEmailId: process.env.CUST_CONTACT_EMAIL_ID
         }
     };
 

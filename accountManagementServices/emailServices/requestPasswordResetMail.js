@@ -2,13 +2,14 @@ const transporter = require('../connections/emailConnection');
 
 const requestPasswordResetMail = (userInfo) => {
     const mailOptions = {
-        from: 'shadow.works',
+        from: 'dailyFinance',
         to: userInfo.emailId,
         subject: 'Password Reset Request',
         template: 'requestPasswordResetMail',
         context: {
             fullName: userInfo.fullName,
-            verificationLink: userInfo.verificationLink
+            verificationLink: process.env.FRONTEND_URL + "/reset-password/" +  userInfo.verificationLink,
+            custContactEmailId: process.env.CUST_CONTACT_EMAIL_ID
         }
     };
 

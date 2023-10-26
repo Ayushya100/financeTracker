@@ -4,17 +4,17 @@ const transporter = require('../connections/emailConnection');
 
 // Verification Mail Service
 const sendVerificationMail = (custId, emailId, name) => {
-    const url = 'http://localhost:3200/api/users/verify/';
     const uniqueString = uuidv4() + custId;
 
     const mailOptions = {
-        from: 'shadow.works',
+        from: 'dailyFinance',
         to: emailId,
         subject: 'Welcome to dailyFinance - Verify Your Email and Activate Your Account',
         template: 'verificationMail',
         context: {
             fullName: name,
-            verificationCode: url + custId + '/' + Date.now() + '/' + uniqueString
+            verificationCode: process.env.FRONTEND_URL + "/verify/" + custId + '/' + Date.now() + '/' + uniqueString,
+            custContactEmailId: process.env.CUST_CONTACT_EMAIL_ID
         }
     };
 

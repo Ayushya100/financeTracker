@@ -2,14 +2,15 @@ const transporter = require('../connections/emailConnection');
 
 const accountDeactivatedMail = (payload) => {
     const mailOptions = {
-        from: 'shadow.works',
+        from: 'dailyFinance',
         to: payload.emailId,
         subject: 'Account Deactivation Confirmation',
         template: 'accountDeactivatedMail',
         context: {
             fullName: payload.fullName,
             dateOfDeactivation: payload.dateOfDeactivation,
-            reactivationTimeline: payload.reactivationTimeline
+            reactivationTimeline: payload.reactivationTimeline,
+            custContactEmailId: process.env.CUST_CONTACT_EMAIL_ID
         }
     };
 
