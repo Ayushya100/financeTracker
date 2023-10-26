@@ -4,5 +4,6 @@ module.exports = {
     accountReactivateMail: require('./accountReactivateMail'),
     userUpdatedMail: require('./userUpdatedMail'),
     passwordUpdatedMail: require('./passwordUpdatedMail'),
-    accountDeactivatedMail: require('./accountDeactivatedMail')
+    accountDeactivatedMail: require('./accountDeactivatedMail'),
+    requestPasswordResetMail: require('./requestPasswordResetMail')
 };
