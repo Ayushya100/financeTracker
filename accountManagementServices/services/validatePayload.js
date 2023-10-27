@@ -20,6 +20,8 @@ const validatePayload = (payload, type) => {
         return deactivateUserVerification(payload);
     } else if (requestType === 'request-password-reset') {
         return requestPasswordReset(payload);
+    } else if (requestType === 'reset-password') {
+        return resetPasswordValidation(payload);
     }
 }
 
@@ -136,6 +138,14 @@ const deactivateUserVerification = async(payload) => {
 const requestPasswordReset = async(payload) => {
     if (!payload.userName && !payload.emailId) {
         return {code: 400, message: 'Mandatory parameters (Email Id or Username) are missing'};
+    }
+    return {code: 200, message: 'Payload verified'};
+}
+
+// Reset password for user
+const resetPasswordValidation = async(payload) => {
+    if (!payload.newPassword && !payload.reEnteredPassword) {
+        return {code: 400, message: 'Mandatory parameters are missing'};
     }
     return {code: 200, message: 'Payload verified'};
 }

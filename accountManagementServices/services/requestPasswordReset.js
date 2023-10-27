@@ -14,7 +14,7 @@ const requestPasswordReset = async(payload) => {
         if (isUserAvailable) {
             const custId = isUserAvailable._id
             const uniqueString = uuidv4() + custId;
-            const verificationCode = 'RESET_PASSWORD/' + custId + '/' + Date.now() + '/' + uniqueString;
+            const verificationCode = 'RESET_PASSWORD:' + custId + ':' + Date.now() + ':' + uniqueString;
             
             await User.findByIdAndUpdate(custId, { verificationCode });
 
