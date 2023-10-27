@@ -10,5 +10,6 @@ module.exports = {
     updateUserDetails: require('./updateUserDetails'),
     updateUserPassword: require('./updateUserPassword'),
     deactivateUser: require('./deactivateUser'),
-    requestPasswordReset: require('./requestPasswordReset')
+    requestPasswordReset: require('./requestPasswordReset'),
+    resetPassword: require('./resetPassword')
 };
