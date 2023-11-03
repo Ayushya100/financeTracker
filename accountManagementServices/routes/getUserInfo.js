@@ -4,6 +4,9 @@ const axios = require('axios');
 
 const services = require('../services');
 
+// Add User Logs Services
+const userLogServices = require('../logServices');
+
 // API
 router.get('/:id', async(req, res) => {
     try {
@@ -24,6 +27,13 @@ router.get('/:id', async(req, res) => {
             res.status(validateTokenResult.code).send(validateTokenResult.message);
         }
     } catch(err) {
+        userLogServices.unknownError({
+            logType: 'get-user-info-request',
+            code: 500,
+            logDetails: err,
+            requestBody: req.body,
+            message: 'FAILED'
+        });
         res.status(500).send(err);
     }
 });

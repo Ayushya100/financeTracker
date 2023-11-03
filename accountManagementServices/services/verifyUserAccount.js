@@ -1,7 +1,11 @@
 // Adding Models
 const User = require('../models/userInfoModels');
 
+// Email Service
 const emailServices = require('../emailServices');
+
+// Add User Logs Services
+const userLogServices = require('../logServices');
 
 const verifyUser = async(id, createdDate, verificationCode) => {
     const currentTime = Date.now();
@@ -16,9 +20,33 @@ const verifyUser = async(id, createdDate, verificationCode) => {
         await User.findByIdAndUpdate(id, userInfo);
 
         emailServices.accountVerifiedMail(userInfo);
+
+        userLogServices.requestSuccessLog({
+            logType: 'user-verify-request',
+            code: 200,
+            message: 'SUCCESS',
+            responseMessage: 'User Verified Successfully',
+            requestBody: {
+                userId: id,
+                createdDate: createdDate,
+                verificationCode: verificationCode
+            },
+            response: null
+        });
         return {code: 200, message: 'User verification completed successfully', fileToDisplay: 'accountVerified'};
     }
 
+    userLogServices.errorLog({
+        logType: 'user-verify-request',
+        code: 401,
+        logDetails: 'User verification failed',
+        message: 'FAILED',
+        requestBody: {
+            userId: id,
+            createdDate: createdDate,
+            verificationCode: verificationCode
+        }
+    });
     return {code: 401, message: 'User verification failed', fileToDisplay: 'accountVerificationFailed'};
 }
 

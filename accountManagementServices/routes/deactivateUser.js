@@ -4,6 +4,9 @@ const axios = require('axios');
 
 const services = require('../services');
 
+// Add User Logs Services
+const userLogServices = require('../logServices');
+
 // API
 router.put('/:id', async(req, res) => {
     try {
@@ -20,6 +23,11 @@ router.put('/:id', async(req, res) => {
 
         if (validateTokenResult.code === 200) {
             const validatePayloadResult = await services.validatePayload(payload, 'deactivate-user');
+            userLogServices.payloadValidationLog({
+                userId: id,
+                token: token,
+                payload: payload
+            }, validatePayloadResult);
 
             if (validatePayloadResult.code === 200) {
                 const deactivateUserResult = await services.deactivateUser(id, payload);
@@ -31,6 +39,13 @@ router.put('/:id', async(req, res) => {
             res.status(validateTokenResult.code).send(validateTokenResult.message);
         }
     } catch(err) {
+        userLogServices.unknownError({
+            logType: 'deactivate-user-request',
+            code: 500,
+            logDetails: err,
+            requestBody: req.body,
+            message: 'FAILED'
+        });
         res.status(500).send(err);
     }
 });

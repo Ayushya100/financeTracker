@@ -4,6 +4,9 @@ const axios = require('axios');
 
 const services = require('../services');
 
+// Add User Logs Services
+const userLogServices = require('../logServices');
+
 // API
 router.put('/:id', async(req, res) => {
     try {
@@ -19,9 +22,14 @@ router.put('/:id', async(req, res) => {
         });
 
         if (validateTokenResult.code === 200) {
-            const validatePayloadResult = await services.validatePayload(payload, 'update-password');
+            const payloadValidationResult = await services.validatePayload(payload, 'update-password');
+            userLogServices.payloadValidationLog({
+                userId: id,
+                token: token,
+                payload: payload
+            }, payloadValidationResult);
 
-            if (validatePayloadResult.code === 200) {
+            if (payloadValidationResult.code === 200) {
                 const userUpdateResult = await services.updateUserPassword(id, payload);
 
                 if(userUpdateResult.code === 200) {
@@ -31,12 +39,19 @@ router.put('/:id', async(req, res) => {
                     res.status(userUpdateResult.code).send(userUpdateResult.message);
                 }
             } else {
-                res.status(validatePayloadResult.code).send(validatePayloadResult.message);
+                res.status(payloadValidationResult.code).send(payloadValidationResult.message);
             }
         } else {
             res.status(validateTokenResult.code).send(validateTokenResult.message);
         }
     } catch(err) {
+        userLogServices.unknownError({
+            logType: 'update-password-request',
+            code: 500,
+            logDetails: err,
+            requestBody: req.body,
+            message: 'FAILED'
+        });
         res.status(500).send(err);
     }
 });

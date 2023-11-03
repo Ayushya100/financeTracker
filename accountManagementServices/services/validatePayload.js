@@ -28,126 +28,194 @@ const validatePayload = (payload, type) => {
 // New user payload validation
 const newUserValidation = async(payload) => {
     const missingMsg = 'Required parameters are missing:';
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'create-user-request'
+    };
 
-    if (!payload.firstName) {
-        return {code: 400, message: `${missingMsg} FirstName`};
-    } else if (!payload.lastName) {
-        return {code: 400, message: `${missingMsg} LastName`};
-    } else if (!payload.userName) {
-        return {code: 400, message: `${missingMsg} UserName`};
-    } else if (!payload.emailId) {
-        return {code: 400, message: `${missingMsg} EmailId`};
-    } else if (!payload.password) {
-        return {code: 400, message: `${missingMsg} Password`};
+    if (!payload.firstName || !payload.lastName || !payload.userName || !payload.emailId || !payload.password) {
+        payloadResult.code = 400;
+        payloadResult.type = 'FAILED';
+
+        for (const param in payload) {
+            if (!payload[param]) {
+                payloadResult.message = `${missingMsg} ${param}`;
+                break;
+            }
+        }
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 // New user verification payload
 const newUserIdVerification = async(id) => {
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'user-verify-request'
+    };
+
     if (!id) {
-        return {code: 400, message: 'Required parameter missing: id'};
+        payloadResult.code = 400;
+        payloadResult.message = 'Required parameter missing: id';
+        payloadResult.type = 'FAILED';
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 // User login verification/deactivate payload
 const userLoginVerification = async(payload) => {
-    const message = {code: 400, message: ''};
     const missingMsg = 'Required parameters are missing: ';
-    if (!payload.userName) {
-        message.message = `${missingMsg} UserName`;
-        return message;
-    } else if (!payload.password) {
-        message.message = `${missingMsg} Password`;
-        return message;
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'user-login-request'
+    };
+
+    if (!payload.userName || !payload.password) {
+        payloadResult.code = 400;
+        payloadResult.type = ' FAILED';
+
+        for (const param in payload) {
+            if (!payload[param]) {
+                payloadResult.message = `${missingMsg} ${param}`;
+                break;
+            }
+        }
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 // Token verification payload
 const tokenVerification = async(payload) => {
     const missingMsg = 'Required parameters are missing:';
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'token-verify-request'
+    };
 
     if (!payload.id) {
-        return {code: 400, message: `${missingMsg} id`};
+        payloadResult.code = 400;
+        payloadResult.type = 'FAILED';
+        payloadResult.message = `${missingMsg} id`;
     } else if (!payload.token) {
-        return {code: 401, message: `Unauthorized user`};
+        payloadResult.code = 401;
+        payloadResult.type = 'FAILED';
+        payloadResult.message = `${missingMsg} Unauthorized user`;
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 // Update user details payload
 const updateUserVerification = async(payload) => {
-    const message = {code: 400, message: ''};
-    const missingMsg = 'Required parameters are missing: ';
-    if (!payload.id) {
-        message.message = `${missingMsg} id`;
-        return message;
-    } else if (!payload.firstName) {
-        message.message = `${missingMsg} firstName`;
-        return message;
-    } else if (!payload.lastName) {
-        message.message = `${missingMsg} lastName`;
-        return message;
-    } else if (!payload.userName) {
-        message.message = `${missingMsg} userName`;
-        return message;
-    } else if (!payload.emailId) {
-        message.message = `${missingMsg} emailId`;
-        return message;
-    } else if (!payload.modifiedBy) {
-        message.message = `${missingMsg} Modified By`;
-        return message;
+    const missingMsg = 'Required parameters are missing:';
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'update-user-request'
+    };
+
+    if (!payload.id || !payload.firstName || !payload.lastName || !payload.userName || !payload.emailId || !payload.modifiedBy) {
+        payloadResult.code = 400;
+        payloadResult.type = 'FAILED';
+
+        for (const param in payload) {
+            if (!payload[param]) {
+                payloadResult.message = `${missingMsg} ${param}`;
+                break;
+            }
+        }
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 // Update user password payload
 const updatePasswordVerification = async(payload) => {
-    const message = {code: 400, message: ''};
-    const missingMsg = 'Required parameters are missing: ';
-    if (!payload.oldPassword) {
-        message.message = `${missingMsg} oldPassword`;
-        return message;
-    } else if (!payload.newPassword) {
-        message.message = `${missingMsg} newPassword`;
-        return message;
+    const missingMsg = 'Required parameters are missing:';
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'update-password-request'
+    };
+
+    if (!payload.oldPassword || !payload.newPassword) {
+        payloadResult.code = 400;
+        payloadResult.type = 'FAILED';
+
+        for (const param in payload) {
+            if (!payload[param]) {
+                payloadResult.message = `${missingMsg} ${param}`;
+                break;
+            }
+        }
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 // Deactivate user payload
 const deactivateUserVerification = async(payload) => {
-    const message = {code: 400, message: ''};
-    const missingMsg = 'Required parameters are missing: ';
-    if (!payload.userName) {
-        message.message = `${missingMsg} UserName`;
-        return message;
-    } else if (!payload.password) {
-        message.message = `${missingMsg} Password`;
-        return message;
-    } else if (!payload.modifiedBy) {
-        message.message = `${missingMsg} Modified By`;
-        return message;
+    const missingMsg = 'Required parameters are missing:';
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'deactivate-user-request'
+    };
+
+    if (!payload.userName || !payload.password || !payload.modifiedBy) {
+        payloadResult.code = 400;
+        payloadResult.type = 'FAILED';
+
+        for (const param in payload) {
+            if (!payload[param]) {
+                payloadResult.message = `${missingMsg} ${param}`;
+                break;
+            }
+        }
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 // Request password reset for user
 const requestPasswordReset = async(payload) => {
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'password-reset-request'
+    };
+
     if (!payload.userName && !payload.emailId) {
-        return {code: 400, message: 'Mandatory parameters (Email Id or Username) are missing'};
+        payloadResult.code = 400;
+        payloadResult.type = 'FAILED';
+        payloadResult.message = 'Mandatory parameters (Email Id or Username) are missing';
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 // Reset password for user
 const resetPasswordValidation = async(payload) => {
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'reset-password-request'
+    };
+
     if (!payload.newPassword && !payload.reEnteredPassword) {
-        return {code: 400, message: 'Mandatory parameters are missing'};
+        payloadResult.code = 400;
+        payloadResult.type = 'FAILED';
+        payloadResult.message = 'New Password and Reentered Password fields cannot be empty';
     }
-    return {code: 200, message: 'Payload verified'};
+    return payloadResult;
 }
 
 module.exports = validatePayload;

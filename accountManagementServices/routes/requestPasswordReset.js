@@ -3,11 +3,15 @@ const router = express.Router();
 
 const services = require('../services');
 
+// Add User Logs Services
+const userLogServices = require('../logServices');
+
 // API
 router.post('/', async(req, res) => {
     try {
         const payload = req.body;
         const validatePayloadResult = await services.validatePayload(payload, 'request-password-reset');
+        userLogServices.payloadValidationLog(payload, validatePayloadResult);
 
         if (validatePayloadResult.code === 200) {
             const passwordResetResult = await services.requestPasswordReset(payload);
@@ -17,6 +21,13 @@ router.post('/', async(req, res) => {
             res.status(validatePayloadResult.code).send(validatePayloadResult.message);
         }
     } catch(err) {
+        userLogServices.unknownError({
+            logType: 'password-reset-request',
+            code: 500,
+            logDetails: err,
+            requestBody: req.body,
+            message: 'FAILED'
+        });
         res.status(500).send(err);
     }
 });

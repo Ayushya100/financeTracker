@@ -1,0 +1,14 @@
+{
+    "apiDetails" : {
+        "create-user-request" : "api/users/createUser",
+        "user-verify-request": "api/users/verify",
+        "user-login-request": "api/users/userLogin",
+        "token-verify-request": "api/users/validateToken",
+        "get-user-info-request": "api/users/getUserInfo",
+        "update-user-request": "api/users/updateUserDetails",
+        "update-password-request": "api/users/updateUserPassword",
+        "deactivate-user-request": "api/users/deactivateUser",
+        "password-reset-request": "api/users/requestPasswordReset",
+        "reset-password-request": "api/users/resetPassword"
+    }
+}

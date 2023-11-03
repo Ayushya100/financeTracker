@@ -6,6 +6,9 @@ const User = require('../models/userInfoModels');
 // Email service
 const emailServices = require('../emailServices');
 
+// Add User Logs Services
+const userLogServices = require('../logServices');
+
 const requestPasswordReset = async(payload) => {
     try {
         const infoToDisplay = '_id firstName lastName userName emailId createdOn lastLogin';
@@ -25,10 +28,40 @@ const requestPasswordReset = async(payload) => {
                 fullName: updatedUser.firstName + " " + updatedUser.lastName,
                 verificationLink: updatedUser.verificationCode
             });
+
+            userLogServices.requestSuccessLog({
+                logType: 'password-reset-request',
+                code: 201,
+                message: 'SUCCESS',
+                responseMessage: 'Password Reset Request',
+                requestBody: payload,
+                response: {
+                    userId: updatedUser._id,
+                    firstName: updatedUser.firstName,
+                    lastName: updatedUser.lastName,
+                    userName: updatedUser.userName,
+                    emailId: updatedUser.emailId
+                }
+            });
             return {code: 201, message: updatedUser};
         }
+
+        userLogServices.errorLog({
+            logType: 'password-reset-request',
+            code: 404,
+            logDetails: 'User not found',
+            message: 'FAILED',
+            requestBody: payload
+        });
         return {code: 404, message: 'User not found'};
     } catch(err) {
+        userLogServices.unknownError({
+            logType: 'password-reset-request',
+            code: 500,
+            logDetails: err,
+            requestBody: payload,
+            message: 'FAILED'
+        });
         return {code: 500, message: `Error occurred while retrieving the user record from DB: ${err}`};
     }
 };
