@@ -16,22 +16,42 @@ const newUserCheck = async(payload) => {
     let userName = payload.userName;
     const conflictMsg = 'already exist';
 
-    if (await User.findOne({ emailId })) {
-        return {code: 409, message: `EmailId ${conflictMsg}`};
-    } else if (await User.findOne({ userName })) {
-        return {code: 409, message: `Username ${conflictMsg}`};
+    let payloadResult = {
+        code: 200,
+        message: 'User verified',
+        type: 'SUCCESS',
+        logType: 'create-user-request'
     }
-    return {code: 200, message: 'User verified'};
+
+    if (await User.findOne({ emailId })) {
+        payloadResult.code = 409;
+        payloadResult.type = 'FAILED';
+        payloadResult.message = `EmailId ${conflictMsg}`;
+    } else if (await User.findOne({ userName })) {
+        payloadResult.code = 409;
+        payloadResult.type = 'FAILED';
+        payloadResult.message = `Username ${conflictMsg}`;
+    }
+    return payloadResult;
 }
 
 // Check if user exist in db with the id provided
 const checkUserExistById = async(id) => {
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'user-verify-request'
+    };
+
     const userFound = await User.findById(id);
 
     if (!userFound) {
-        return {code: 404, message: `Id ${id} invalid, user not found`};
+        payloadResult.code = 404;
+        payloadResult.type = 'FAILED';
+        payloadResult.message = `Id ${id} invalid, user not found`;
     }
-    return {code: 200, message: 'User exist'};
+    return payloadResult;
 }
 
 module.exports = validateUser;

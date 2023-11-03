@@ -6,6 +6,9 @@ const User = require('../models/userInfoModels');
 // Email Services
 const emailServices = require('../emailServices');
 
+// Add User Logs Services
+const userLogServices = require('../logServices');
+
 const resetPassword = async(payload, verificationCode) => {
     const verificationResult = verificationCode.split(":");
     const userId = verificationResult[1];
@@ -33,14 +36,56 @@ const resetPassword = async(payload, verificationCode) => {
 
                 const fullName = isUserFound.firstName + " " + isUserFound.lastName;
                 emailServices.passwordUpdatedMail(isUserFound.emailId, fullName);
+
+                userLogServices.requestSuccessLog({
+                    logType: 'reset-password-request',
+                    code: 201,
+                    message: 'SUCCESS',
+                    responseMessage: 'Password Reset Successfully',
+                    requestBody: {
+                        userId: userId,
+                        verificationCodeCreationTime: codeCreationTime
+                    },
+                    response: null
+                });
                 return {code: 201, message: 'Password Reset successfully'};
             } else {
+                userLogServices.errorLog({
+                    logType: 'reset-password-request',
+                    code: 409,
+                    logDetails: 'Verification Code Expired',
+                    message: 'FAILED',
+                    requestBody: {
+                        userId: userId,
+                        verificationCodeCreationTime: codeCreationTime
+                    }
+                });
                 return {code: 409, message: 'Verification Code Expired.'}
             }
         } else {
+            userLogServices.errorLog({
+                logType: 'reset-password-request',
+                code: 404,
+                logDetails: 'User not found',
+                message: 'FAILED',
+                requestBody: {
+                    userId: userId,
+                    verificationCodeCreationTime: codeCreationTime
+                }
+            });
             return {code: 404, message: 'User not found'};
         }
     } else {
+        userLogServices.errorLog({
+            logType: 'reset-password-request',
+            code: 400,
+            logDetails: 'Password does not matched',
+            message: 'FAILED',
+            requestBody: {
+                userId: userId,
+                verificationCodeCreationTime: codeCreationTime
+            }
+        });
         return {code: 400, message: 'Password does not matched'};
     }
 };

@@ -3,12 +3,16 @@ const router = express.Router();
 
 const services = require('../services');
 
+// Add User Logs Services
+const userLogServices = require('../logServices');
+
 // API
 router.post('/', async(req, res) => {
     try {
         let payload = req.body;
         const payloadValidationResult = await services.validatePayload(payload, 'validate-token');
-        
+        userLogServices.payloadValidationLog(payload, payloadValidationResult);
+
         if (payloadValidationResult.code === 200) {
             const tokenValidationResult = await services.validateToken(payload);
             
@@ -26,6 +30,13 @@ router.post('/', async(req, res) => {
             res.status(payloadValidationResult.code).send(payloadValidationResult.message);
         }
     } catch(err) {
+        userLogServices.unknownError({
+            logType: 'token-verify-request',
+            code: 500,
+            logDetails: err,
+            requestBody: req.body,
+            message: 'FAILED'
+        });
         res.status(500).send(err);
     }
 });
