@@ -1,4 +1,5 @@
 module.exports = {
     validatePayload: require('./validatePayload'),
-    updateProfileImage: require('./updateProfileImage')
+    updateProfileImage: require('./updateProfileImage'),
+    getProfileImage: require('./getProfileImage')
 };

@@ -34,6 +34,7 @@ app.use(`${userApi}/resetPassword`, usersRoute.resetPassword);
 
 // Users Image Routes
 app.use(`${userApi}/updateUserProfileImage`, usersImageRoute.updateUserProfileImage);
+app.use(`${userApi}/getUserProfileImage`, usersImageRoute.getUserProfileImage);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);
