@@ -1,13 +1,13 @@
 const {v4: uuidv4} = require('uuid');
 
 // Add user model
-const User = require('../models/userInfoModels');
+const User = require('../../models/userInfoModels');
 
 // Email service
-const emailServices = require('../emailServices');
+const emailServices = require('../../emailServices');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 const requestPasswordReset = async(payload) => {
     try {

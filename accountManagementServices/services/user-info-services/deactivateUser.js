@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 
 // Models
-const Users = require('../models/userInfoModels');
+const Users = require('../../models/userInfoModels');
 
 // Email Service
-const emailServices = require('../emailServices');
+const emailServices = require('../../emailServices');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 const deactivateUser = async(id, payload) => {
     const userName = payload.userName;

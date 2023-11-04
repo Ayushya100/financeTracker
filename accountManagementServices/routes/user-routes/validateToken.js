@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const services = require('../services');
+const services = require('../../services/user-info-services');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 // API
 router.post('/', async(req, res) => {

@@ -1,11 +1,11 @@
 // Adding Models
-const User = require('../models/userInfoModels');
+const User = require('../../models/userInfoModels');
 
 // Email Service
-const emailServices = require('../emailServices');
+const emailServices = require('../../emailServices');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 const verifyUser = async(id, createdDate, verificationCode) => {
     const currentTime = Date.now();

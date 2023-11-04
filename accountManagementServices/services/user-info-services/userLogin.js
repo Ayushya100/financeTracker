@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const emailServices = require('../emailServices');
+const emailServices = require('../../emailServices');
 
 // Add Models
-const Users = require('../models/userInfoModels');
+const Users = require('../../models/userInfoModels');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 const userLogin = async(payload) => {
     const userName = payload.userName;
