@@ -1,4 +1,5 @@
-const User = require('../models/userInfoModels');
+// Add User Model
+const User = require('../../models/userInfoModels');
 
 const validateUser = (payload, type) => {
     let requestType = type;

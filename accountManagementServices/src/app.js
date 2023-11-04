@@ -17,8 +17,10 @@ const port = process.env.PORT;
 const userApi = '/api/users';
 
 // Routes
-const usersRoute = require('../routes');
+const usersRoute = require('../routes/user-routes');
+const usersImageRoute = require('../routes/user-image-routes');
 
+// User Routes
 app.use(`${userApi}/createUser`, usersRoute.createUser);
 app.use(`${userApi}/verify`, usersRoute.verifyUser);
 app.use(`${userApi}/userLogin`, usersRoute.userLogin);
@@ -29,6 +31,9 @@ app.use(`${userApi}/updateUserPassword`, usersRoute.updateUserPassword);
 app.use(`${userApi}/deactivateUser`, usersRoute.deactivateUser);
 app.use(`${userApi}/requestPasswordReset`, usersRoute.requestPasswordReset);
 app.use(`${userApi}/resetPassword`, usersRoute.resetPassword);
+
+// Users Image Routes
+app.use(`${userApi}/updateUserProfileImage`, usersImageRoute.updateUserProfileImage);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);

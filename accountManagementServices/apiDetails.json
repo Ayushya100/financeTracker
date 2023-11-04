@@ -9,6 +9,7 @@
         "update-password-request": "api/users/updateUserPassword",
         "deactivate-user-request": "api/users/deactivateUser",
         "password-reset-request": "api/users/requestPasswordReset",
-        "reset-password-request": "api/users/resetPassword"
+        "reset-password-request": "api/users/resetPassword",
+        "update-profile-image-request": "api/users/updateUserProfileImage"
     }
 }

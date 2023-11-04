@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-const services = require('../services');
+const services = require('../../services/user-info-services');
+const emailServices = require('../../emailServices');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 // API
 router.put('/:id', async(req, res) => {
@@ -22,25 +23,34 @@ router.put('/:id', async(req, res) => {
         });
 
         if (validateTokenResult.code === 200) {
-            const validatePayloadResult = await services.validatePayload(payload, 'deactivate-user');
+            payload.id = id;
+            const payloadValidationResult = await services.validatePayload(payload, 'update-user');
             userLogServices.payloadValidationLog({
                 userId: id,
                 token: token,
                 payload: payload
-            }, validatePayloadResult);
+            }, payloadValidationResult);
 
-            if (validatePayloadResult.code === 200) {
-                const deactivateUserResult = await services.deactivateUser(id, payload);
-                res.status(deactivateUserResult.code).send(deactivateUserResult.message);
+            if (payloadValidationResult.code === 200) {
+                const userUpdateResult = await services.updateUserDetails(payload);
+
+                if (userUpdateResult.code === 201) {
+                    const updatedUser = await services.getUserInfo(id);
+                    emailServices.userUpdatedMail(updatedUser.message);
+                    
+                    res.status(updatedUser.code).send(updatedUser.message);
+                } else {
+                    res.status(userUpdateResult.code).send(userUpdateResult.message);
+                }
             } else {
-                res.status(validatePayloadResult.code).send(validatePayloadResult.message);
+                res.status(payloadValidationResult.code).send(payloadValidationResult.message);
             }
         } else {
             res.status(validateTokenResult.code).send(validateTokenResult.message);
         }
     } catch(err) {
         userLogServices.unknownError({
-            logType: 'deactivate-user-request',
+            logType: 'update-user-request',
             code: 500,
             logDetails: err,
             requestBody: req.body,

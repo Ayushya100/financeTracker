@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 
 // Add Models
-const Users = require('../models/userInfoModels');
+const Users = require('../../models/userInfoModels');
 
 // Email Service
-const emailServices = require('../emailServices');
+const emailServices = require('../../emailServices');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 const updateUserPassword = async(id, payload) => {
     const user = await Users.findById(id);

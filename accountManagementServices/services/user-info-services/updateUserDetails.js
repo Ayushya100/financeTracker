@@ -1,8 +1,8 @@
 // Add Models
-const User = require('../models/userInfoModels');
+const User = require('../../models/userInfoModels');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 const updateUserDetails = async(payload) => {
     try {

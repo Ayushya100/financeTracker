@@ -1,15 +1,15 @@
 const bcrypt = require('bcrypt');
 
-const emailServices = require('../emailServices/index');
+const emailServices = require('../../emailServices/index');
 
 // Adding Models
-const User = require('../models/userInfoModels');
-const UserImg = require('../models/userImageModels');
-const UserFinance = require('../models/userBasicFinanceModels');
-const UserDashboard = require('../models/userDashboardSettingsModels');
+const User = require('../../models/userInfoModels');
+const UserImg = require('../../models/userImageModels');
+const UserFinance = require('../../models/userBasicFinanceModels');
+const UserDashboard = require('../../models/userDashboardSettingsModels');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 // Service Functionality
 const createUser = async(payload) => {

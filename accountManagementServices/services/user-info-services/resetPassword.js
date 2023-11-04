@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 
 // Add User Model
-const User = require('../models/userInfoModels');
+const User = require('../../models/userInfoModels');
 
 // Email Services
-const emailServices = require('../emailServices');
+const emailServices = require('../../emailServices');
 
 // Add User Logs Services
-const userLogServices = require('../logServices');
+const userLogServices = require('../../logServices');
 
 const resetPassword = async(payload, verificationCode) => {
     const verificationResult = verificationCode.split(":");
