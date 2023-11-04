@@ -4,31 +4,28 @@ const userImg = require('../../models/userImageModels');
 // Add User Logs Services
 const userLogServices = require('../../logServices');
 
-const updateProfileImage = async(userId, profileImage) => {
+
+const getProfileImage = async(userId) => {
     try {
         const user = await userImg.findOne({userId: userId});
-    
-        if (user) {
-            user.profileImage.data = profileImage.buffer;
-            user.profileImage.contentType = profileImage.mimetype;
-            user.modifiedOn = Date.now();
-            user.modifiedBy = userId;
-            
-            await user.save();
 
+        if (user) {
             userLogServices.requestSuccessLog({
-                logType: 'update-profile-image-request',
-                code: 201,
+                logType: 'get-profile-image-request',
+                code: 200,
                 message: 'SUCCESS',
-                responseMessage: 'User profile Image updated successfully',
+                responseMessage: 'User profile Image retrieved',
                 requestBody: {userId: userId},
-                response: null
+                response: user
             });
-            return {code: 201, message: 'User profile Image updated successfully'};
+            return {code: 200, message: 'User profile Image retrieved', response: {
+                contentType: user.profileImage.contentType,
+                data: user.profileImage.data
+            }};
         }
 
         userLogServices.errorLog({
-            logType: 'update-profile-image-request',
+            logType: 'get-profile-image-request',
             code: 404,
             logDetails: 'User not found',
             message: 'FAILED',
@@ -37,7 +34,7 @@ const updateProfileImage = async(userId, profileImage) => {
         return {code: 404, message: 'User not found'};
     } catch(err) {
         userLogServices.unknownError({
-            logType: 'update-profile-image-request',
+            logType: 'get-profile-image-request',
             code: 500,
             logDetails: err,
             requestBody: {userId: userId},
@@ -47,4 +44,4 @@ const updateProfileImage = async(userId, profileImage) => {
     }
 };
 
-module.exports = updateProfileImage;
+module.exports = getProfileImage;

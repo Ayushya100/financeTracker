@@ -1,3 +1,4 @@
 module.exports = {
-    updateUserProfileImage: require('./updateUserProfileImage')
+    updateUserProfileImage: require('./updateUserProfileImage'),
+    getUserProfileImage: require('./getUserProfileImage')
 };
