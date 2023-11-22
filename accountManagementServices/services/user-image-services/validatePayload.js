@@ -3,6 +3,8 @@ const validatePayload = (payload, type) => {
 
     if (requestType === 'update-profile-image') {
         return updateImageValidation(payload);
+    } else if (requestType === 'delete-profile-image') {
+        return deleteImageValidation(payload);
     }
 }
 
@@ -26,6 +28,23 @@ const updateImageValidation = (payload) => {
                 break;
             }
         }
+    }
+    return payloadResult;
+}
+
+// Delete Profile Image Request
+const deleteImageValidation = (payload) => {
+    let payloadResult = {
+        code: 200,
+        message: 'Payload verified',
+        type: 'SUCCESS',
+        logType: 'delete-profile-image-request'
+    };
+
+    if (!payload.userId) {
+        payloadResult.code = 400;
+        payloadResult.type = 'FAILED';
+        payloadResult.message = 'Required parameters are missing: userId';
     }
     return payloadResult;
 }
