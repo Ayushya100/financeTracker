@@ -8,7 +8,7 @@ const services = require('../../services/user-image-services');
 const userLogServices = require('../../logServices');
 
 // API
-router.get('/:id', async(req, res) => {
+router.delete('/:id', async(req, res) => {
     try {
         const id = req.params.id;
         let token = req.headers['authorization'].split(' ');
@@ -21,20 +21,21 @@ router.get('/:id', async(req, res) => {
         });
 
         if (validateTokenResult.code === 200) {
-            const userProfileImageResult = await services.getProfileImage(id);
+            const payloadValidationResult = await services.validatePayload({userId: id}, 'delete-profile-image');
+            userLogServices.userExistLog({userId: id}, payloadValidationResult);
 
-            if ((userProfileImageResult.code === 200) && (userProfileImageResult.response.contentType !== null)) {
-                res.contentType(userProfileImageResult.response.contentType);
-                res.status(userProfileImageResult.code).send(userProfileImageResult.response.data);
-            } else {
+            if (payloadValidationResult.code === 200) {
+                const userProfileImageResult = await services.deleteProfileImage(id);
                 res.status(userProfileImageResult.code).send(userProfileImageResult.message);
+            } else {
+                res.status(payloadValidationResult.code).send(payloadValidationResult.message);
             }
         } else {
             res.status(validateTokenResult.code).send(validateTokenResult.message);
         }
     } catch(err) {
         userLogServices.unknownError({
-            logType: 'get-profile-image-request',
+            logType: 'delete-profile-image-request',
             code: 500,
             logDetails: err,
             requestBody: { userId: req.params.id },
