@@ -19,6 +19,7 @@ const userApi = '/api/users';
 // Routes
 const usersRoute = require('../routes/user-routes');
 const usersImageRoute = require('../routes/user-image-routes');
+const usersFinanceRoute = require('../routes/user-finance-info-routes');
 
 // User Routes
 app.use(`${userApi}/createUser`, usersRoute.createUser);
@@ -36,6 +37,9 @@ app.use(`${userApi}/resetPassword`, usersRoute.resetPassword);
 app.use(`${userApi}/updateUserProfileImage`, usersImageRoute.updateUserProfileImage);
 app.use(`${userApi}/getUserProfileImage`, usersImageRoute.getUserProfileImage);
 app.use(`${userApi}/deleteUserProfileImage`, usersImageRoute.deleteUserProfileImage);
+
+// User Finance Info Routes
+app.use(`${userApi}/getUserFinanceInfo`, usersFinanceRoute.getUserFinanceInfo);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);
