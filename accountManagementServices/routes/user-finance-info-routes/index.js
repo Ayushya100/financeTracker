@@ -1,3 +1,4 @@
 module.exports = {
-    getUserFinanceInfo: require('./getUserFinanceInfo')
+    getUserFinanceInfo: require('./getUserFinanceInfo'),
+    updateUserFinanceInfo: require('./updateUserFinanceInfo')
 };

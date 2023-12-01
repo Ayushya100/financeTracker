@@ -13,6 +13,7 @@
         "update-profile-image-request": "api/users/updateUserProfileImage",
         "get-profile-image-request": "api/users/getUserProfileImage",
         "delete-profile-image-request": "api/users/deleteUserProfileImage",
-        "get-user-finance-request": "api/users/deleteUserProfileImage"
+        "get-user-finance-request": "api/users/getUserFinanceInfo",
+        "update-user-finance-request": "api/users/updateUserFinanceInfo"
     }
 }

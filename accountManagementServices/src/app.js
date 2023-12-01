@@ -40,6 +40,7 @@ app.use(`${userApi}/deleteUserProfileImage`, usersImageRoute.deleteUserProfileIm
 
 // User Finance Info Routes
 app.use(`${userApi}/getUserFinanceInfo`, usersFinanceRoute.getUserFinanceInfo);
+app.use(`${userApi}/updateUserFinanceInfo`, usersFinanceRoute.updateUserFinanceInfo);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);
